@@ -1,0 +1,10 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+
+set(SRCS variable.c utils.c block.c commandline.c constant.c expression.c func.c integer.c label.c operand.c pointer.c statement.c)
+#set(SRCS *.c)
+INCLUDE_DIRECTORIES("/home/haoxin/haoxin-data/dut-research/CovSmith/ccg")
+set(CMAKE_C_COMPILER clang-6.0)
+set(CMAKE_CXX_COMPILER clang++-6.0)
+set(CMAKE_C_FLAGS "-w -lm -g -pipe -fPIC -shared -std=c11")
+set(CMAKE_CXX_FLAGS "-w -g -lm  -pipe -Wall -Wextra -fPIC -shared -std=c++11")
+add_library(ccg SHARED ${SRCS})

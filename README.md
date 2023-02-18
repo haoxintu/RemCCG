@@ -1,16 +1,34 @@
-# Welcome to RemCCG Homepage!
+# Homepage of RemCCG
 
 **RemCCG** is a remanufactured C program generator achieved by the framework *RemGen* proposed in the paper "RemGen: Remanufacturing A Program Generator for Compiler Testing" [[PDF]](https://haoxintu.github.io/files/issre2022-camera-ready.pdf) (Accepted in the Research Track of [ISSRE 2022](https://issre2022.github.io/index.html)).
 
-
-The source code will be mergred from https://github.com/RemGen2022/RemCCG soon!
-
 ----
-## Notes
-* Please kindly note this is the initial version of **RemCCG**, and it is not runnable for now mainly due to some path dependences (e.g., some required libraries) issues.
-* The detailed setup tutorial will be updated before the final release of the tool.
+## Installation
+```
+./install.sh
+```
 
+or
 
+```
+sudo apt-get install autoconf automake libtool curl make g++ unzip
+wget https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.11.0.zip
+unzip v3.11.0.zip
+cd protobuf-3.11.0
+./autogen.sh
+./configure
+make
+sudo make install
+cd ..
+
+sudo apt-get install clang-6.0 clang++-6.0
+mkdir build
+cd build
+cmake ..
+make -j4
+cd ..
+```
+you can find the `remccg` in build/src and use it to perform compiler testing.
 
 ## The following is a full list of all the reported bugs found by *RemCCG* (remanufactured by *RemGen* framework) (Update by 2022-5-20).
 
@@ -78,6 +96,7 @@ The source code will be mergred from https://github.com/RemGen2022/RemCCG soon!
 46. https://bugs.llvm.org/show_bug.cgi?id=52024 (Crash, Fixed)
 
 
-## Thanks and Have a Nice Day !
+## Acknowledgment
+We appreciate the developers from GCC and LLVM very much for their quick responses for confirming and fixing bugs.
 
 

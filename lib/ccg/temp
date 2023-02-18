@@ -1,0 +1,63 @@
+/* Commandline processing */
+  void processCommandline(int, char**);
+
+  /* Utils */
+  void die(const char*, ...);
+  void info(const char*, ...);
+  void *xmalloc(size_t);
+  void *xcalloc(size_t, size_t);
+  char *genStars(size_t n);
+
+  /* Constant */
+  char *makeHexadecimalValue(unsigned);
+  Constant *makeIntegerConstant(unsigned);
+  void printConstant(Constant*);
+
+  /* Variable */
+  Variable *makeVariable(Context*, VariableType);
+  void addVariableToList(Variable*, VariableList**);
+  void freeVariableList(VariableList*);
+  void printVariableDecl(Variable*);
+  void printVariableType(Variable*);
+  void copyVariableList(VariableList*, VariableList**);
+  Variable *selectVariable(Context*, VariableType);
+  void makeGlobalVariables(void);
+  IntegerType ultimateType(Variable*);
+
+  /* Pointer */
+  void makePointer(Variable*, Context*);
+  Variable *pickPointableVariable(Context*);
+  size_t pointerDepth(Variable*);
+  char *maxDerefdPointer(Variable*);
+  void printPointerDecl(Variable*);
+
+  /* Integer */
+  void makeInteger(Variable*, Context*);
+  bool writeableIntegersExist(Context*);
+  void printIntegerDecl(Variable*);
+
+  /* Function */
+  Function *makeFunction(bool);
+  void printFunction(Function*);
+  void printFunctionPrototype(Function*);
+
+  /* Block */
+  Block *makeBlock(Context*, unsigned);
+  void printBlock(Block*);
+
+  /* Statement */
+  void addStatementToList(Statement*, StatementList**);
+  Statement *makeStatement(Context*, unsigned, bool);
+  void printStatement(Statement*);
+
+  /* Operand */
+  Operand *selectOperand(Context*);
+
+  /* Expression */
+  void addExpressionToList(Expression*, ExpressionList**);
+  Expression *makeExpression(Context*, unsigned);
+  void printExpression(Expression*);
+
+  /* Label */
+  Label *makeLabel(Context*);
+  Label *selectLabel(Context*);

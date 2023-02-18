@@ -1,0 +1,234 @@
+syntax = "proto2";
+
+message PrimaryExpression {
+    required Identifier identifier = 1;
+    required Constant constant = 2;
+    required StringLiteral string_literal = 3;
+    required Expression expression = 4;
+    required GenericSelection generic_selection = 5;
+    required VariableArgument variable_argument = 6;
+    required OffSetOf off_set_off = 7;
+}
+
+message Identifier {
+
+    }
+
+message Constant {
+
+}
+
+message StringLiteral {
+
+}
+
+message Expression {
+
+}
+
+message GenericSelection {
+
+}
+
+message VariableArgument {
+
+}
+
+message OffSetOf {
+
+}
+
+message PostfixExpression {
+
+}
+
+message UnaryExpression {
+
+}
+
+message AtomicTypeSpecifier {
+
+}
+
+message StructOrUnionSpecifier {
+
+}
+
+message EnumSpecifier {
+
+}
+
+
+
+message Const {
+    required int32 varInt32 = 1;
+    required double varDouble = 2;
+    required string varString = 3;
+}
+
+message VarRef {
+    // Add an enum for each array in function signature
+    enum Arr {
+        ARR_A = 0;
+        ARR_B = 1;
+        ARR_C = 2;
+    };
+    required Arr arr = 1;
+}
+
+message BinaryOp {
+    enum Op {
+        PLUS = 0;
+        MINUS = 1;
+        MUL = 2;
+        XOR = 3;
+        AND = 4;
+        OR = 5;
+        EQ = 6;
+        NE = 7;
+        LE = 8;
+        GE = 9;
+        LT = 10;
+        GT = 11;
+    };
+    required Op op = 1;
+    required Rvalue left = 2;
+    required Rvalue right = 3;
+}
+
+message Rvalue {
+    oneof rvalue_oneof {
+        Const cons = 1;
+        BinaryOp binop = 2;
+        VarRef varref = 3;
+  }
+}
+
+message LabeledStatement {
+    //required Statement1 statements = 1;
+    required StatementSeq statements = 1;
+    required AssignmentStatement assignment = 2;
+}
+
+message CompoundStatement {
+    //required Statement1 statements = 1;
+    required StatementSeq statements = 1;
+    required AssignmentStatement assignment = 2;
+}
+
+message ExpressionStatement {
+    //required Statement1 statements = 1;
+    required StatementSeq statements = 1;
+    required AssignmentStatement assignment = 2;
+}
+
+message AssignmentStatement {
+    required VarRef varref = 1;
+    required Rvalue rvalue = 2;
+}
+
+message IfElseStatement{
+    required Rvalue condition = 1;
+    //required Statement1 if_body = 2;
+    //required Statement1 else_body = 3;
+    required StatementSeq if_body = 2;
+    required StatementSeq else_body = 3;
+}
+
+message IfStatement{
+    required Rvalue condition = 1;
+    //required Statement1 if_body = 2;
+    required StatementSeq if_body = 2;
+}
+
+message SwitchStatement {
+    required Rvalue condition = 1;
+    //required Statement1 switch_statement = 2;
+    required StatementSeq switch_statement = 2;
+}
+
+message LoopStatement {
+    oneof Loop {
+        WhileLoopStatement while_loop_statement = 1;
+        DoWhileLoopStatement do_while_loop_statement = 2;
+        ForLoopStatement for_loop_statement = 3;
+    }
+}
+
+message WhileLoopStatement {
+    required AssignmentStatement asssignment_statement = 1;
+    //required Statement1 statement = 2;
+    required StatementSeq statement = 2;
+}
+
+message DoWhileLoopStatement {
+    required AssignmentStatement asssignment_statement = 1;
+    //required Statement1 statement = 2;
+    required StatementSeq statement = 2;
+}
+
+message ForLoopStatement {
+    required AssignmentStatement asssignment_statement = 1;
+    //required Statement1 statement = 2;
+    required StatementSeq statement = 2;
+}
+
+message JumpStatement {
+    //required Statement1 statements = 1;
+    required StatementSeq statements = 1;
+    required AssignmentStatement assignment = 2;
+}
+
+message Statement1 {
+    required PrimaryExpression primary_expression = 1;
+    oneof S {
+        AssignmentStatement assignment = 2;
+        WhileLoopStatement while_loop_statement = 3;
+        DoWhileLoopStatement do_while_loop_statement = 4;
+        ForLoopStatement for_loop_statement = 5;
+        IfElseStatement if_else_statement = 6;
+        IfStatement if_statement = 7;
+        SwitchStatement switch_statement = 8;
+        LabeledStatement labeled_statement = 9;
+        ExpressionStatement expression_statement = 10;
+        CompoundStatement compound_statement = 11;
+        JumpStatement jump_statement = 12;
+    }
+    /*
+    //oneof S {
+    required AssignmentStatement assignment = 2;
+    required WhileLoopStatement while_loop_statement = 3;
+    required DoWhileLoopStatement do_while_loop_statement = 4;
+    required ForLoopStatement for_loop_statement = 5;
+    required IfElseStatement if_else_statement = 6;
+    required IfStatement if_statement = 7;
+    required SwitchStatement switch_statement = 8;
+    //}
+    */
+
+    required UnaryExpression unary_expression = 13;
+}
+
+message StatementSeq {
+    oneof SS {
+        Statement1 statements = 1;
+        StatementSeq_last statement_seq_last = 2;
+    }
+}
+
+message StatementSeq_last {
+    required StatementSeq statement_seq = 1;
+    required Statement1 statement = 2;
+}
+
+message LoopFunction {
+    required StatementSeq statement_seq = 1;
+    required PrimaryExpression primary_expression = 2;
+    required UnaryExpression unary_expression = 3;
+}
+
+message MainFunction {
+    required LoopFunction loop_function = 1;
+}
+
+package clang_fuzzer;
