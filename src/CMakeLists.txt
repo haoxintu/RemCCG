@@ -21,20 +21,14 @@ target_link_libraries(proto_to_c
 )
 
 add_executable(remccg
-	${LIBFUZZER_SOURCES}
     remccg.cc
-    # binary_format.cc
-    # text_format.cc
-    # utf8_fix.cc
     util.cc
 )
 
 target_link_libraries(remccg
     c-proto
     proto_to_c
-    protobuf-mutator
     ${PROTOBUF_LIBRARIES}
-    ${LIB_PROTOBUF_MUTATOR_LIBRARIES}
     ccg
 )
 
