@@ -100,3 +100,17 @@ you can find the `remccg` in build/src and use it to perform compiler testing.
 We appreciate the developers from GCC and LLVM very much for their quick responses for confirming and fixing bugs.
 
 
+## Citation
+
+```
+@inproceedings{tu2022remgen,
+  title={Remgen: Remanufacturing a Random Program Generator for Compiler Testing},
+  author={Tu, Haoxin and Jiang, He and Li, Xiaochen and Ren, Zhilei and Zhou, Zhide and Jiang, Lingxiao},
+  booktitle={2022 IEEE 33rd International Symposium on Software Reliability Engineering (ISSRE)},
+  pages={529--540},
+  year={2022},
+  organization={IEEE}
+}
+```
+
+
